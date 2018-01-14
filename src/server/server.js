@@ -5,6 +5,7 @@ import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebPackHotMiddleware from 'webpack-hot-middleware';
 import React from 'react';
 
+const PORT = 3001;
 const app = Express();
 const webpackCompiler = Webpack(WebpackConfig);
 app.use(WebpackDevMiddleware(webpackCompiler, {
@@ -15,7 +16,7 @@ app.use(WebpackDevMiddleware(webpackCompiler, {
 app.use(WebPackHotMiddleware(webpackCompiler));
 
 const mockDbRequest = queryDescription => new Promise(res => {
-  setTimeout(() => res(queryDescription), 2000);
+  setTimeout(() => res(queryDescription), 2000); // simulate 2s database latency
 });
 
 app.get('/api/registerUser', async (req, res) => {
@@ -50,6 +51,6 @@ app.use((req, res) => {
   res.send(htmlString);
 });
 
-app.listen(3000, () => {
-  console.log(`Started async generator function demo on localhost:3000...`);
+app.listen(PORT, () => {
+  console.log(`Started async generator function demo on localhost:${PORT}...`);
 });

@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
-import createAsyncIterator from './createAsyncIterator';
+import createPurchaseLogicAsyncIterator from './purchaseLogic';
 
 export default class App extends Component {
-
-  state = {result: 'Nothing yet.'};
+  state = {result: 'Click purchase to start the demo.'};
 
   onClickPurchase = async () => {
-    console.log('onClickPurchase');
+    const asyncIterator = createPurchaseLogicAsyncIterator();
 
-    const it = createAsyncIterator();
-    for await (const n of it) {
-      this.setState({result: n});
+    for await (const result of asyncIterator) {
+      this.setState({result});
     }
 
-    this.setState({result: 'Done! Your receipt has been emailed to you. Thank you!'});
+    this.setState({result: 'Purchase completed. Thank you!'});
   };
 
   render() {
