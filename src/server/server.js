@@ -15,8 +15,9 @@ app.use(WebpackDevMiddleware(webpackCompiler, {
 }));
 app.use(WebPackHotMiddleware(webpackCompiler));
 
+const mockDelayMs = 1300;
 const mockDbRequest = queryDescription => new Promise(res => {
-  setTimeout(() => res(queryDescription), 2000); // simulate 2s database latency
+  setTimeout(() => res(queryDescription), mockDelayMs); // simulate database latency
 });
 
 app.get('/api/registerUser', async (req, res) => {
