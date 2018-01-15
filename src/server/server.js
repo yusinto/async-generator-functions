@@ -53,5 +53,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Started async generator function demo on localhost:${PORT}...`);
+  console.log(`Started async generator function demo on port ${PORT}...`);
 });

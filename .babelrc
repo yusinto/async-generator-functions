@@ -1,14 +1,7 @@
 {
   "presets": [
-    ["latest", {
-      "es2015": { "loose": true }
-    }],
+    "latest",
     "react",
-    "stage-0"
-  ],
-  "plugins": [
-    "transform-runtime",
-    "transform-async-to-generator",
-    "transform-async-generator-functions"
+    "stage-2"
   ]
 }
