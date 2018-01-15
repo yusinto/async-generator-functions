@@ -1,23 +1,12 @@
-const registerUser = async () => {
-  const url = '/api/registerUser';
+const fetchApi = async (url) => {
   const response = await fetch(url);
   const responseJson = await response.json();
   return responseJson;
 };
 
-const placeOrder = async () => {
-  const url = '/api/placeOrder';
-  const response = await fetch(url);
-  const responseJson = await response.json();
-  return responseJson;
-};
-
-const emailReceipt = async () => {
-  const url = '/api/emailReceipt';
-  const response = await fetch(url);
-  const responseJson = await response.json();
-  return responseJson;
-};
+const registerUser = () => fetchApi('/api/registerUser');
+const placeOrder = () => fetchApi('/api/placeOrder');
+const emailReceipt = () => fetchApi('/api/emailReceipt');
 
 export default async function* createAsyncIterator () {
   yield 'Registering user...';

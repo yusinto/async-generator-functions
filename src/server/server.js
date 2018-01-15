@@ -5,7 +5,7 @@ import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebPackHotMiddleware from 'webpack-hot-middleware';
 import React from 'react';
 
-const PORT = 3001;
+const PORT = 3000;
 const app = Express();
 const webpackCompiler = Webpack(WebpackConfig);
 app.use(WebpackDevMiddleware(webpackCompiler, {
