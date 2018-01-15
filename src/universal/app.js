@@ -5,10 +5,12 @@ export default class App extends Component {
   state = {result: 'Click purchase to start the demo.'};
 
   onClickPurchase = async () => {
-    const asyncIterator = createPurchaseLogicAsyncIterator();
+    const it = createPurchaseLogicAsyncIterator();
 
-    for await (const result of asyncIterator) {
-      this.setState({result});
+    for await (const result of it) {
+      console.log(result.value);
+      if(result.done) break;
+      this.setState({result: result.value});
     }
 
     this.setState({result: 'Purchase completed. Thank you!'});

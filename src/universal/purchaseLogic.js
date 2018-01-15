@@ -1,3 +1,5 @@
+const data = [1, 3, 5, 34, 5, 36, 9];
+
 const fetchApi = async (url) => {
   const response = await fetch(url);
   const responseJson = await response.json();
@@ -8,15 +10,17 @@ const registerUser = () => fetchApi('/api/registerUser');
 const placeOrder = () => fetchApi('/api/placeOrder');
 const emailReceipt = () => fetchApi('/api/emailReceipt');
 
-export default async function* createAsyncIterator () {
-  yield 'Registering user...';
-  yield await registerUser();
+export default async function* createAsyncIterator() {
+  let i = 0;
 
-  yield 'Placing order...';
-  yield await placeOrder();
+  while (true) {
+    const value = data[i++];
 
-  yield 'Emailing receipt...';
-  yield await emailReceipt();
+    if (!value) {
+      yield {value, done: true};
+      break;
+    }
 
-  return;
+    yield new Promise(res => res({value, done: false}));
+  }
 }
